@@ -57,3 +57,43 @@ def sudoku_game():
 
     print("Начальная сетка:")
     print_grid(grid)
+
+    while not is_sudoku_complete(grid):
+        try:
+            print("Введите координаты пустой клетки, чтобы получить подсказки.")
+            row = int(input("Введите номер строки (1-4): ")) - 1
+            col = int(input("Введите номер столбца (1-4): ")) - 1
+
+            if grid[row][col] != 0:
+                print("Эта ячейка уже заполнена! Выберите другую.")
+                continue
+
+            # Показать возможные варианты
+            possible_values = get_possible_values(grid, row, col)
+            if possible_values:
+                print(f"Возможные значения для ячейки ({row + 1}, {col + 1}): {possible_values}")
+            else:
+                print(f"Нет доступных значений для ячейки ({row + 1}, {col + 1}). Проверьте введённые числа!")
+
+            # Предложить пользователю сделать ход
+            num = int(input("Введите число (1-4): "))
+
+            if num not in possible_values:
+                print("Недопустимый ход. Это число нарушает правила Судоку.")
+                continue
+
+            # Вставляем число в сетку
+            grid[row][col] = num
+            print("Обновлённая сетка:")
+            print_grid(grid)
+        except ValueError:
+            print("Ошибка ввода! Пожалуйста, введите корректные значения.")
+        except IndexError:
+            print("Координаты вне диапазона! Введите значения от 1 до 4.")
+
+    print("Поздравляем! Судоку решено!")
+    print_grid(grid)
+
+
+if __name__ == "__main__":
+    sudoku_game()
