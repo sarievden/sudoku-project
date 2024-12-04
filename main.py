@@ -38,3 +38,8 @@ def get_possible_values(grid, row, col, size):
         if is_valid_move(grid, row, col, num, size):
             possible_values.append(num)
     return possible_values
+    
+
+def is_sudoku_complete(grid):
+    """Проверяет, заполнена ли сетка полностью."""
+    return all(all(cell != 0 for cell in row) for row in grid)
