@@ -43,3 +43,17 @@ def get_possible_values(grid, row, col, size):
 def is_sudoku_complete(grid):
     """Проверяет, заполнена ли сетка полностью."""
     return all(all(cell != 0 for cell in row) for row in grid)
+
+
+def sudoku_game():
+    """Позволяет пользователю решать Судоку с подсказками."""
+    # Начальная сетка
+    grid = [
+        [1, 2, 3, 4],
+        [4, 3, 0, 2],
+        [3, 4, 2, 0],
+        [2, 1, 4, 0]
+    ]
+
+    print("Начальная сетка:")
+    print_grid(grid)
